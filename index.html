@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anugerah — Creative Designer</title>
+  <meta name="description" content="Anugerah is a creative designer with 8 years of experience in graphic design, branding, posters, 3D and video editing. See the portfolio.">
+  <meta name="author" content="Anugerah">
+  <meta name="keywords" content="Anugerah, creative designer, graphic designer, branding, poster design, video editing, portfolio">
+  <meta name="theme-color" content="#000000">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://anugerah.vercel.app/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Anugerah">
+  <meta property="og:title" content="Anugerah — Creative Designer">
+  <meta property="og:description" content="Graphic design, branding, posters, 3D and video editing by Anugerah.">
+  <meta property="og:url" content="https://anugerah.vercel.app/">
+  <meta property="og:image" content="https://anugerah.vercel.app/img/OG_banner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Anugerah — Creative Designer">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Anugerah — Creative Designer">
+  <meta name="twitter:description" content="Graphic design, branding, posters, 3D and video editing by Anugerah.">
+  <meta name="twitter:image" content="https://anugerah.vercel.app/img/OG_banner.png">
+
+  <!-- Icons -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="stylesheet" href="style.css?v=20261117">
+</head>
+<body>
+
+  <!-- ============ 1. LANDING ============ -->
+  <section id="landing" class="screen">
+    <div class="orbit-stage" id="orbit"></div>
+
+    <nav class="top-nav">
+      <a href="mailto:nugehoodg@gmail.com" class="chip">Contact me</a>
+      <button class="chip icon" id="confettiBtn" aria-label="Toy hand cursor" aria-pressed="true" title="Switch to normal cursor"><img src="streamline--party-popper-solid.png" alt=""></button>
+      <button class="chip icon" id="diceBtn" aria-label="Shuffle designs"><img src="nrk--dice-3.png" alt=""></button>
+    </nav>
+
+    <header class="hero-title">
+      <h1>Anugerah</h1>
+      <p>Creative Designer</p>
+    </header>
+  </section>
+
+  <div class="divider" role="separator"></div>
+
+  <!-- ============ 2. GRAPHIC DESIGN ============ -->
+  <section id="graphic" class="screen">
+    <h2 class="section-title">Graphic Design</h2>
+    <div class="gallery" id="gallery">
+      <div class="track" id="track"></div>
+    </div>
+
+    <div class="road-wrap" id="roadWrap">
+      <svg class="road" id="road" preserveAspectRatio="none"><path id="roadPath" /></svg>
+      <div class="car" id="car" role="slider" tabindex="0" aria-label="Drag the car to scroll designs" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <img src="carbon--car.png" alt="" draggable="false">
+      </div>
+    </div>
+    <div class="gd-bottom">
+      <button class="toggle" id="destroyBtn" aria-pressed="false">
+        <span data-mode="destroy">Destroy</span> / <span data-mode="arrange">Arrange</span>
+      </button>
+      <span class="hint" id="gdHint">Drag the car</span>
+    </div>
+  </section>
+
+  <!-- ============ 3. VIDEO EDITING ============ -->
+  <section id="video" class="screen">
+    <div class="ve-header">
+      <h2>Video Editing</h2>
+      <div class="ve-project"><span id="projectName">Project name</span> <img src="clarity--folder-open-line.png" alt=""></div>
+    </div>
+
+    <div class="ve-stage">
+    <div class="ve-preview">
+      <video id="player" playsinline muted preload="metadata"></video>
+      <button class="ve-sound" id="soundBtn" aria-label="Toggle sound">Sound off</button>
+      <div class="ve-time" id="veTime">00:00:00</div>
+    </div>
+    </div>
+
+    <div class="ve-timeline">
+      <div class="ve-label"><img src="coolicons--film-duocolor.png" alt=""> Media</div>
+      <div class="ve-scroll" id="veScroll">
+        <div class="ve-lane" id="veLane">
+          <div class="ve-playhead" id="playhead"><span class="ve-knob"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. ABOUT / BOX ============ -->
+  <section id="about" class="screen">
+    <div class="box">
+      <img class="box-img" src="cardboard-box.png" alt="An open cardboard box">
+      <a class="item paper" href="https://rxresu.me/anugerah/designer" target="_blank" rel="noopener"
+         data-title="Resume" data-text="Checkout my resume">
+        <img src="resume-paper.png" alt="Resume">
+      </a>
+      <a class="item camera" href="https://www.instagram.com/brief.look/" target="_blank" rel="noopener"
+         data-title="Instagram" data-text="My Instagram @brief.look">
+        <img src="camera.png" alt="Instagram">
+      </a>
+      <div class="item photo" tabindex="0"
+         data-title="About Me" data-text="Anugerah|A passionate graphic designer and creative with 8 years of experience creating visually compelling and diverse projects that resonate with target audiences. Focuses on communication and high quality output as tools for engagements.">
+        <img src="polaroid.png" alt="Photo of Anugerah">
+      </div>
+      <a class="item controller" href="https://dande-lion.itch.io/" target="_blank" rel="noopener"
+         data-title="My Games" data-text="Games I've made">
+        <img src="controller.png" alt="My games">
+      </a>
+    </div>
+    <div class="tip" id="tip" role="tooltip"><strong></strong><p></p></div>
+  </section>
+
+  <footer class="footer">
+    <img class="stamp" src="stamp.png" alt="Anugerah stamp logo" width="256" height="256">
+  </footer>
+
+  <canvas id="confetti"></canvas>
+
+  <script src="data.js?v=20261117"></script>
+  <script src="cursor.js?v=20261117"></script>
+  <script src="main.js?v=20261117"></script>
+</body>
+</html>

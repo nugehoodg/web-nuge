@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lofi">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>App Store</title>
+    <link href="../src/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js" integrity="sha384-ZBXiYtYQ6hJ2Y0ZNoYuI+Nq5MqWBr+chMrS/RkXpNzQCApHEhOt2aY8EJgqwHLkJ" crossorigin="anonymous"></script>
+</head>
+
+
+
+<nav class="navbar p-7 sm:p-10 mx-auto border-b" hx-get="../navbar_01.html" hx-trigger="load" hx-target="this"></nav>
+
+
+
+
+<!-- page -->
+<div class="max-w-5xl mx-auto px-4 py-10">
+<div class="card border">
+    <div class="card-body">
+        <div class="card-title text-3xl font-black">
+            🙏 Help Publish to Play Store
+        </div>
+
+        <div class="card-content space-y-3">
+
+            <p class="text-lg">
+                I want to keep my apps easy for the user to navigate. Because my apps require certain permissions, often times they will get a certain warning from Google, even though they are completely harmless.
+            </p>
+
+            <!-- PROGRESS BAR -->
+            <div>
+                <!-- EDIT THESE NUMBERS -->
+                <div class="flex justify-between text-sm font-semibold mb-1">
+                    <span>Progress</span>
+                    <span>$0 / $50</span>
+                </div>
+
+                <progress 
+                    class="progress progress-warning w-full" 
+                    value="0" 
+                    max="100">
+                </progress>
+
+                <div class="text-xs opacity-70 mt-1">
+                    Goal: Google Play Developer Account ($25) + Tax
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-actions place-content-end py-2">
+            <a target="_blank" href="https://saweria.co/anugerah" class="btn btn-warning">
+                Saweria
+            </a>
+
+            <a target="_blank" href="https://ko-fi.com/anugerah" class="btn btn-warning">
+                Ko-fi
+            </a>
+        </div>
+    </div>
+</div>
+
+    <div class="flex mt-4 items-start">
+
+
+
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">
+            Apps
+        </h1>
+    </div>
+
+
+
+    <!-- cards -->
+    <div id="app-container" class="flex flex-col gap-6"></div>
+
+
+
+</div>
+
+
+
+<!-- template -->
+<template id="app-card-template">
+
+    <div class="border border-gray-300 rounded-lg overflow-hidden bg-white">
+
+        <!-- banner -->
+        <div class="w-full aspect-3/1 bg-gray-100 overflow-hidden border-b border-gray-300">
+            <img class="w-full h-full object-cover">
+        </div>
+
+
+
+        <div class="p-5">
+
+            <!-- title + button -->
+            <div class="flex justify-between items-start gap-4">
+
+                <h2 class="text-lg font-semibold text-gray-900"></h2>
+
+
+                <a target="_blank" class="btn btn-success border border-gray-300 px-3 py-1.5 rounded-md text-sm flex items-center gap-2">
+                    Download
+                    <span class="badge badge-sm bg-black/10 border-none download-count opacity-70">...</span>
+                </a>
+
+            </div>
+
+
+
+            <!-- description -->
+            <p class="text-gray-600 text-sm mt-2 mb-3"></p>
+
+
+
+            <!-- tags -->
+            <div class="flex flex-wrap gap-2 text-xs"></div>
+
+        </div>
+
+    </div>
+
+</template>
+
+
+
+<script>
+
+    function getAppId(name) {
+        return name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+    }
+
+    async function updateCount(appId, el) {
+        try {
+            const response = await fetch(`https://abacus.jasoncameron.dev/get/nugehoodg_apps/${appId}`);
+            if (response.ok) {
+                const data = await response.json();
+                el.textContent = data.value || 0;
+            } else {
+                el.textContent = 0;
+            }
+        } catch (e) {
+            el.textContent = 0;
+        }
+    }
+
+    async function incrementCount(appId, el) {
+        try {
+            const response = await fetch(`https://abacus.jasoncameron.dev/hit/nugehoodg_apps/${appId}`);
+            if (response.ok) {
+                const data = await response.json();
+                el.textContent = data.value;
+            }
+        } catch (e) {
+            console.error("Failed to increment count", e);
+        }
+    }
+
+    async function loadApps() {
+        const response = await fetch("../app-project.json")
+        const apps = await response.json()
+        const container = document.getElementById("app-container")
+        const template = document.getElementById("app-card-template")
+
+        apps.forEach(app => {
+            const card = template.content.cloneNode(true)
+            const appId = getAppId(app.name)
+
+            card.querySelector("img").src = app.banner
+            card.querySelector("h2").textContent = app.name
+            card.querySelector("p").textContent = app.description
+
+            const tagContainer = card.querySelector(".flex-wrap")
+            app.tags.forEach(tag => {
+                const tagEl = document.createElement("span")
+                tagEl.className = "px-2 py-1 rounded-full border border-gray-300 bg-gray-50 text-gray-700"
+                tagEl.textContent = tag
+                tagContainer.appendChild(tagEl)
+            })
+
+            const downloadBtn = card.querySelector("a")
+            const countEl = card.querySelector(".download-count")
+
+            downloadBtn.href = app.download
+            downloadBtn.addEventListener('click', () => {
+                incrementCount(appId, countEl);
+            });
+
+            // Initial count fetch
+            updateCount(appId, countEl);
+
+            container.appendChild(card)
+        })
+    }
+
+    loadApps()
+
+</script>
+
+<footer class="flex justify-between p-5 border-t" hx-get="../footer_01.html" hx-trigger="load" hx-target="this">
+</footer>
+</body>
+
+</html>
