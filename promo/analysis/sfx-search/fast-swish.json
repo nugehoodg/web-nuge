@@ -1,0 +1,60 @@
+{
+  "provider": "freesound",
+  "query": "fast swish",
+  "license_policy": "cc0",
+  "ordering": "relevance; popularity is supporting evidence only",
+  "results": [
+    {
+      "id": "fs:877976",
+      "title": "Swish Swipe Short",
+      "author": "Qvantor",
+      "duration_seconds": 0.871104,
+      "preview_url": "https://cdn.freesound.org/previews/877/877976_19512113-hq.mp3",
+      "downloads": 81,
+      "page_url": "https://freesound.org/people/Qvantor/sounds/877976/",
+      "license_label": "Creative Commons 0",
+      "description": "Short bright swish, like a swung stick or blade, for swings, swipes, sword moves and quick UI motion. Open its preset in Chisper, a free browser synth, and tweak it to your needs: https://chisper.qvantor.org/?preset=327f145a-e164-40da-89aa-131543130e5b",
+      "rating": null,
+      "rating_count": null
+    },
+    {
+      "id": "fs:75544",
+      "title": "swish Bamboo pole w insect net 12.wav",
+      "author": "ra_gun",
+      "duration_seconds": 0.441646,
+      "preview_url": "https://cdn.freesound.org/previews/75/75544_94000-hq.mp3",
+      "downloads": 2152,
+      "page_url": "https://freesound.org/people/ra_gun/sounds/75544/",
+      "license_label": "Creative Commons 0",
+      "description": "Swinging the pole. Stereo recording made with Tascam DR-100.",
+      "rating": 4.6,
+      "rating_count": 7
+    },
+    {
+      "id": "fs:838769",
+      "title": "SWSH_Badminton Racquet_Recording_03_JW Audio",
+      "author": "JW_Audio",
+      "duration_seconds": 0.16975,
+      "preview_url": "https://cdn.freesound.org/previews/838/838769_13183432-hq.mp3",
+      "downloads": 230,
+      "page_url": "https://freesound.org/people/JW_Audio/sounds/838769/",
+      "license_label": "Creative Commons 0",
+      "description": "A recording of a badminton racquet being swung in front of a microphone.",
+      "rating": 4.5,
+      "rating_count": 4
+    },
+    {
+      "id": "fs:264591",
+      "title": "swoosh.wav",
+      "author": "vacuumfan7072",
+      "duration_seconds": 0.280952,
+      "preview_url": "https://cdn.freesound.org/previews/264/264591_2884593-hq.mp3",
+      "downloads": 3546,
+      "page_url": "https://freesound.org/people/vacuumfan7072/sounds/264591/",
+      "license_label": "Creative Commons 0",
+      "description": "The sound of a belt going through the air.",
+      "rating": 4.6,
+      "rating_count": 15
+    }
+  ]
+}

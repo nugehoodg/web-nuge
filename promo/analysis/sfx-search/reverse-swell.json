@@ -1,0 +1,21 @@
+{
+  "provider": "freesound",
+  "query": "reverse swell",
+  "license_policy": "cc0",
+  "ordering": "relevance; popularity is supporting evidence only",
+  "results": [
+    {
+      "id": "fs:503813",
+      "title": "reverse fx 12.wav",
+      "author": "reathance",
+      "duration_seconds": 0.510635,
+      "preview_url": "https://cdn.freesound.org/previews/503/503813_9637845-hq.mp3",
+      "downloads": 195,
+      "page_url": "https://freesound.org/people/reathance/sounds/503813/",
+      "license_label": "Creative Commons 0",
+      "description": "just some reverse",
+      "rating": null,
+      "rating_count": null
+    }
+  ]
+}

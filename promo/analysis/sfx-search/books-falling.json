@@ -1,0 +1,60 @@
+{
+  "provider": "freesound",
+  "query": "books falling",
+  "license_policy": "cc0",
+  "ordering": "relevance; popularity is supporting evidence only",
+  "results": [
+    {
+      "id": "fs:178611",
+      "title": "Books Dropping",
+      "author": "deleted_user_3280201",
+      "duration_seconds": 1.30177,
+      "preview_url": "https://cdn.freesound.org/previews/178/178611_3280201-hq.mp3",
+      "downloads": 7895,
+      "page_url": "https://freesound.org/people/deleted_user_3280201/sounds/178611/",
+      "license_label": "Creative Commons 0",
+      "description": "Books dropping on a surface.",
+      "rating": 4.2,
+      "rating_count": 33
+    },
+    {
+      "id": "fs:563457",
+      "title": "BookFallingFromShelf.wav",
+      "author": "nicholasdaryl",
+      "duration_seconds": 1.2742,
+      "preview_url": "https://cdn.freesound.org/previews/563/563457_10415593-hq.mp3",
+      "downloads": 383,
+      "page_url": "https://freesound.org/people/nicholasdaryl/sounds/563457/",
+      "license_label": "Creative Commons 0",
+      "description": "Sound of a book falling off of a shelf.",
+      "rating": 4.5,
+      "rating_count": 6
+    },
+    {
+      "id": "fs:185041",
+      "title": "Book Falling.wav",
+      "author": "justeluis",
+      "duration_seconds": 0.611565,
+      "preview_url": "https://cdn.freesound.org/previews/185/185041_3050308-hq.mp3",
+      "downloads": 1816,
+      "page_url": "https://freesound.org/people/justeluis/sounds/185041/",
+      "license_label": "Creative Commons 0",
+      "description": "Sound of a book hitting the ground when falling. Sound recorded using a Zoom H2 in UPF library. Audacity software used by normalize and introduce fade-in/fade-out in the sound.",
+      "rating": 4.4,
+      "rating_count": 16
+    },
+    {
+      "id": "fs:822563",
+      "title": "Pick Up Book Item",
+      "author": "qubodup",
+      "duration_seconds": 0.833479,
+      "preview_url": "https://cdn.freesound.org/previews/822/822563_71257-hq.mp3",
+      "downloads": 288,
+      "page_url": "https://freesound.org/people/qubodup/sounds/822563/",
+      "license_label": "Creative Commons 0",
+      "description": "Dropping a book, magazine, newspaper, journal, diary item. In actuality it is a manual booklet sliding down a washers side and dropping on the laminate flooring of a kitchen. Recorded with a Canon EOS M50. Stereo-split, normalized and extracted using Audacity.",
+      "rating": 5.0,
+      "rating_count": 7
+    }
+  ]
+}

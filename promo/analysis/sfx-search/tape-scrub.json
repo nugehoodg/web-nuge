@@ -1,0 +1,34 @@
+{
+  "provider": "freesound",
+  "query": "tape scrub",
+  "license_policy": "cc0",
+  "ordering": "relevance; popularity is supporting evidence only",
+  "results": [
+    {
+      "id": "fs:859121",
+      "title": "Fake Tape Spool",
+      "author": "Sassaby",
+      "duration_seconds": 1.12096,
+      "preview_url": "https://cdn.freesound.org/previews/859/859121_2771755-hq.mp3",
+      "downloads": 9,
+      "page_url": "https://freesound.org/people/Sassaby/sounds/859121/",
+      "license_label": "Creative Commons 0",
+      "description": "Made by scrubbing in Reaper",
+      "rating": null,
+      "rating_count": null
+    },
+    {
+      "id": "fs:826519",
+      "title": "Industrial Estate 48",
+      "author": "Thomas_Bey_William_Bailey",
+      "duration_seconds": 2.0,
+      "preview_url": "https://cdn.freesound.org/previews/826/826519_12129484-hq.mp3",
+      "downloads": 92,
+      "page_url": "https://freesound.org/people/Thomas_Bey_William_Bailey/sounds/826519/",
+      "license_label": "Creative Commons 0",
+      "description": "From a pack of samples created with my modular system and optimized for use in Ableton Live. The &quot;Industrial Estate&quot; loops make generous use of metal percussion, analog drum machines, &#x27;micro-sound&#x27; techniques, tape manipulation / digital &#x27;scrubbing&#x27;, and RF signals. Ideal for recycling into abrasive or intense compositions across all genres of electronic music.",
+      "rating": 5.0,
+      "rating_count": 4
+    }
+  ]
+}

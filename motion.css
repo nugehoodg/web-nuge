@@ -1,0 +1,83 @@
+/* Subtle entrance motion (motion.js adds data-reveal + .in) and the back-to-top button.
+   One easing, short distances, ~70ms stagger: things settle in, nothing performs. */
+:root { --ease-out: cubic-bezier(.2, .7, .2, 1); --reveal-dur: .9s; --reveal-step: 70ms; }
+
+[data-reveal] {
+  opacity: 0;
+  transition:
+    opacity var(--reveal-dur) var(--ease-out),
+    translate var(--reveal-dur) var(--ease-out),
+    scale var(--reveal-dur) var(--ease-out),
+    rotate var(--reveal-dur) var(--ease-out),
+    clip-path 1.3s var(--ease-out),
+    filter var(--reveal-dur) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * var(--reveal-step));
+}
+[data-reveal="up"]    { translate: 0 22px; }
+[data-reveal="drop"]  { translate: 0 -18px; }
+[data-reveal="fade"]  { }
+[data-reveal="scale"] { scale: .965; }
+[data-reveal="tile"]  { translate: 0 26px; filter: saturate(.4); }
+[data-reveal="line"]  { opacity: 1; scale: 0 1; transform-origin: left center; transition-duration: 1.2s; }
+[data-reveal="draw"]  { opacity: 1; clip-path: inset(-60px 100% -20px 0); }
+[data-reveal="stamp"] { scale: 1.25; rotate: -8deg; }
+
+[data-reveal].in { opacity: 1; translate: 0 0; scale: 1; rotate: 0deg; filter: none; }
+[data-reveal="draw"].in { clip-path: inset(-60px -20px -20px -90px); } /* room for the car's hop and puffs */
+/* once in, hand transitions back to each element's own hover rules */
+[data-reveal].in.tile { transition: opacity var(--reveal-dur) var(--ease-out), translate var(--reveal-dur) var(--ease-out), filter var(--reveal-dur) var(--ease-out), box-shadow .2s; }
+
+/* tiles: the caption slides up a beat after the image */
+[data-reveal="tile"] .tile-info { translate: 0 10px; opacity: 0; transition: translate .7s var(--ease-out), opacity .7s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * var(--reveal-step) + 250ms); }
+[data-reveal="tile"].in .tile-info { translate: 0 0; opacity: 1; }
+
+/* quiet hover lift on the small chips and the clips, matching the tiles */
+.clip { transition: translate .25s var(--ease-out); }
+@media (hover: hover) { .clip:hover { translate: 0 -3px; } }
+
+/* =================== Back to top =================== */
+.to-top {
+  position: fixed; z-index: 60; right: var(--gutter); bottom: calc(var(--footer-h) + 18px);
+  display: inline-flex; align-items: center; gap: .35em;
+  height: var(--chip-h); padding: 0 .7em 0 .55em; border-radius: 3px;
+  background: var(--chip); color: var(--ink);
+  font-family: var(--display); font-weight: 300; font-size: var(--fs-ui); letter-spacing: -0.02em;
+  opacity: 0; translate: 0 12px; pointer-events: none;
+  transition: opacity .4s var(--ease-out), translate .4s var(--ease-out), background .2s;
+}
+.to-top svg { width: 1em; height: 1em; transition: translate .25s var(--ease-out); }
+.to-top.show { opacity: 1; translate: 0 0; pointer-events: auto; }
+.to-top:hover { background: #e2e2e2; }
+.to-top:hover svg { translate: 0 -2px; }
+.to-top:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+html.pv-open .to-top { display: none; }
+@media (max-width: 600px) { .to-top span { display: none; } .to-top { width: 44px; height: 44px; padding: 0; justify-content: center; } }
+
+/* =================== Reduced motion: plain, quick fades only =================== */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal], [data-reveal="tile"] .tile-info {
+    translate: none !important; scale: none !important; rotate: none !important; clip-path: none !important; filter: none !important;
+    transition: opacity .3s linear !important; transition-delay: 0s !important;
+  }
+  [data-reveal="line"], [data-reveal="draw"] { opacity: 0; }
+  [data-reveal].in, [data-reveal="tile"].in .tile-info { opacity: 1; }
+  .to-top, .to-top svg, .clip { transition: opacity .2s linear; translate: none !important; }
+}
+
+/* Captions only on hover / keyboard focus where a mouse exists; touch keeps them visible.
+   Last in the file and scoped by .track so it also wins over the reduced-motion block —
+   hover-only captions are about clutter, not motion. */
+@media (hover: hover) and (pointer: fine) {
+  .track .tile .tile-info, .track [data-reveal="tile"].in .tile-info {
+    opacity: 0; translate: 0 10px;
+    transition: opacity .3s var(--ease-out), translate .35s var(--ease-out); transition-delay: 0s;
+  }
+  .track:not(.physics) .tile:hover .tile-info, .track .tile:focus-visible .tile-info { opacity: 1; translate: 0 0; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: reduce) {
+  .track .tile .tile-info, .track [data-reveal="tile"].in .tile-info { translate: none; transition: opacity .2s linear; }
+}
+
+/* never hide anything in print */
+@media print { [data-reveal] { opacity: 1 !important; translate: none !important; scale: none !important; clip-path: none !important; } }

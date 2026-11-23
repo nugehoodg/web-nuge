@@ -1,0 +1,21 @@
+{
+  "provider": "freesound",
+  "query": "paper stack drop",
+  "license_policy": "cc0",
+  "ordering": "relevance; popularity is supporting evidence only",
+  "results": [
+    {
+      "id": "fs:416416",
+      "title": "Drop Stack of Paper-whoomp.wav",
+      "author": "DAVESTALKER",
+      "duration_seconds": 0.487506,
+      "preview_url": "https://cdn.freesound.org/previews/416/416416_2417207-hq.mp3",
+      "downloads": 258,
+      "page_url": "https://freesound.org/people/DAVESTALKER/sounds/416416/",
+      "license_label": "Creative Commons 0",
+      "description": "This effect was created for a radio tax spot to support the line &quot;Here&#x27;s all the directions...1,000 pages of them!&quot; (sfx: drops 1,000 pages on desk) It makes a distinct Whoomp sound when they land. Recorded on NT2-A Rode mic in a production studio.",
+      "rating": 4.5,
+      "rating_count": 6
+    }
+  ]
+}

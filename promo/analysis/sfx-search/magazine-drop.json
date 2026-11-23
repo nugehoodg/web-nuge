@@ -1,0 +1,60 @@
+{
+  "provider": "freesound",
+  "query": "magazine drop",
+  "license_policy": "cc0",
+  "ordering": "relevance; popularity is supporting evidence only",
+  "results": [
+    {
+      "id": "fs:484906",
+      "title": "Book Drop - 10",
+      "author": "SpaceJoe",
+      "duration_seconds": 0.824308,
+      "preview_url": "https://cdn.freesound.org/previews/484/484906_6150892-hq.mp3",
+      "downloads": 891,
+      "page_url": "https://freesound.org/people/SpaceJoe/sounds/484906/",
+      "license_label": "Creative Commons 0",
+      "description": "Dropping a book",
+      "rating": 4.5,
+      "rating_count": 13
+    },
+    {
+      "id": "fs:444402",
+      "title": "Magazine Hitting Surface.wav",
+      "author": "MootMcnoodles",
+      "duration_seconds": 0.333333,
+      "preview_url": "https://cdn.freesound.org/previews/444/444402_7231443-hq.mp3",
+      "downloads": 437,
+      "page_url": "https://freesound.org/people/MootMcnoodles/sounds/444402/",
+      "license_label": "Creative Commons 0",
+      "description": "magazine hitting a hard surface",
+      "rating": 4.5,
+      "rating_count": 11
+    },
+    {
+      "id": "fs:483683",
+      "title": "Moving Box of Objects - 1.wav",
+      "author": "SpaceJoe",
+      "duration_seconds": 1.15796,
+      "preview_url": "https://cdn.freesound.org/previews/483/483683_6150892-hq.mp3",
+      "downloads": 149,
+      "page_url": "https://freesound.org/people/SpaceJoe/sounds/483683/",
+      "license_label": "Creative Commons 0",
+      "description": "Various Objects Falling and Moving",
+      "rating": null,
+      "rating_count": null
+    },
+    {
+      "id": "fs:736382",
+      "title": "EQUIPTact_DumpPouch_DropMagazine_05",
+      "author": "mosszaaa",
+      "duration_seconds": 0.723437,
+      "preview_url": "https://cdn.freesound.org/previews/736/736382_7126825-hq.mp3",
+      "downloads": 71,
+      "page_url": "https://freesound.org/people/mosszaaa/sounds/736382/",
+      "license_label": "Creative Commons 0",
+      "description": "Pre-mixed magazine dropping into a dump pouch sounds. Recorded with a Tascam DR-05X and 2 magazines inside a US military dump pouch.",
+      "rating": 4.5,
+      "rating_count": 4
+    }
+  ]
+}

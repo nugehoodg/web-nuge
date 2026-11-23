@@ -1,0 +1,60 @@
+{
+  "provider": "freesound",
+  "query": "spring boing",
+  "license_policy": "cc0",
+  "ordering": "relevance; popularity is supporting evidence only",
+  "results": [
+    {
+      "id": "fs:878316",
+      "title": "8-Bit Spring Boing",
+      "author": "Qvantor",
+      "duration_seconds": 0.639646,
+      "preview_url": "https://cdn.freesound.org/previews/878/878316_19512113-hq.mp3",
+      "downloads": 28,
+      "page_url": "https://freesound.org/people/Qvantor/sounds/878316/",
+      "license_label": "Creative Commons 0",
+      "description": "Retro boing: a pulse wave jumps up and wobbles, the wobble slowing down. For springs, bounces and trampolines. Open its preset in Chisper, a free browser synth, press a key and tweak it to your needs: https://chisper.qvantor.org/?preset=de6a918f-197f-4328-9cf9-9f339474cf13",
+      "rating": null,
+      "rating_count": null
+    },
+    {
+      "id": "fs:472478",
+      "title": "battery compartment spring 01.wav",
+      "author": "denalwa",
+      "duration_seconds": 1.10175,
+      "preview_url": "https://cdn.freesound.org/previews/472/472478_723384-hq.mp3",
+      "downloads": 430,
+      "page_url": "https://freesound.org/people/denalwa/sounds/472478/",
+      "license_label": "Creative Commons 0",
+      "description": "A single boing from a battery compartment spring.",
+      "rating": 4.8,
+      "rating_count": 5
+    },
+    {
+      "id": "fs:614749",
+      "title": "Boing.flac",
+      "author": "Hajisounds",
+      "duration_seconds": 0.211338,
+      "preview_url": "https://cdn.freesound.org/previews/614/614749_13632374-hq.mp3",
+      "downloads": 1197,
+      "page_url": "https://freesound.org/people/Hajisounds/sounds/614749/",
+      "license_label": "Creative Commons 0",
+      "description": "This is a boing sound I created by shaking a microphone (which resulted in a lot of bass frequencies) and then sped it up (A LOT) To get the real bass frequency, original experience, slow it down and lower the pitch by a few octaves. Recorded on December 16th, 2021.",
+      "rating": 4.4,
+      "rating_count": 29
+    },
+    {
+      "id": "fs:404788",
+      "title": "Retro video game sfx - Spring 4",
+      "author": "OwlStorm",
+      "duration_seconds": 0.941769,
+      "preview_url": "https://cdn.freesound.org/previews/404/404788_140737-hq.mp3",
+      "downloads": 541,
+      "page_url": "https://freesound.org/people/OwlStorm/sounds/404788/",
+      "license_label": "Creative Commons 0",
+      "description": "Another springy boing Retro video game style. Generated using Labchirp.",
+      "rating": 4.4,
+      "rating_count": 10
+    }
+  ]
+}

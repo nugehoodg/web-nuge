@@ -111,30 +111,47 @@
     let CAR = 52;
     let ROAD_Y = 70; // dotted line height inside the 80px road box
 
-    // the gallery shows exactly what projects.json lists (see tools/manifest.py)
-    const PROJECTS = window.PROJECTS || DESIGNS.map((d) => ({ ...d, type: 'image', title: '', tags: [] }));
-    const items = PROJECTS.map((d) => {
+    // Bento of projects from portfolio.json (grouped in tools/manifest.py); one tile per project,
+    // clicking a tile opens the project (projects.js). Falls back to one tile per design.
+    const PORTFOLIO = (window.PORTFOLIO && window.PORTFOLIO.length) ? window.PORTFOLIO
+      : (window.PROJECTS || []).map((d, i) => ({ id: 'p' + i, title: d.title, disciplines: (d.tags || []).join(' · '), summary: '', cover: d.src, items: [d] }));
+    const items = PORTFOLIO.map((p, i) => {
+      const cover = p.items.find((it) => it.src === p.cover) || p.items[0];
       const el = document.createElement('figure');
-      el.className = 'design';
+      el.className = 'design tile';
+      el.tabIndex = 0;
+      el.setAttribute('role', 'button');
+      el.setAttribute('aria-label', `Open project: ${p.title}`);
       let img;
-      if (d.type === 'video') {
+      if (cover.type === 'video') {
         img = document.createElement('video');
         img.muted = true; img.loop = true; img.playsInline = true; img.preload = 'none';
-        img.setAttribute('aria-label', d.title);
+        if (cover.poster) img.poster = cover.poster;
       } else {
         img = document.createElement('img');
-        img.alt = d.title || ''; img.decoding = 'async'; img.draggable = false;
+        img.alt = ''; img.decoding = 'async'; img.draggable = false;
       }
+      img.className = 'tile-media';
       el.appendChild(img);
-      if (d.title) {
-        const cap = document.createElement('figcaption');
-        cap.innerHTML = '<span></span><small></small>';
-        cap.firstChild.textContent = d.title;
-        cap.lastChild.textContent = (d.tags || []).join(' · ');
-        el.appendChild(cap);
-      }
+      const cap = document.createElement('figcaption');
+      cap.className = 'tile-info';
+      cap.innerHTML = '<span class="tile-num"></span><strong></strong><small></small>';
+      cap.children[0].textContent = String(i + 1).padStart(2, '0');
+      cap.children[1].textContent = p.title;
+      cap.children[2].textContent = `${p.disciplines}${p.disciplines ? ' · ' : ''}${p.items.length} ${p.items.length === 1 ? 'piece' : 'pieces'}`;
+      el.appendChild(cap);
+      el.addEventListener('keydown', (e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && !physics) { e.preventDefault(); window.ProjectView && window.ProjectView.open(i); }
+      });
       track.appendChild(el);
-      return { d, el, img, loaded: false, playing: false, w: 0, h: 0, hx: 0, hy: 0, x: 0, y: 0, vx: 0, vy: 0, a: 0, va: 0, r: 0 };
+      return { d: cover, p, idx: i, el, img, loaded: false, playing: false, w: 0, h: 0, hx: 0, hy: 0, x: 0, y: 0, vx: 0, vy: 0, a: 0, va: 0, r: 0 };
+    });
+    // a plain click (not a drag, not in Destroy mode) opens the project
+    track.addEventListener('click', (e) => {
+      const el = e.target.closest('.tile');
+      if (!el || physics || arranging) return;
+      const it = items.find((x) => x.el === el);
+      if (it && window.ProjectView) window.ProjectView.open(it.idx);
     });
 
     let vw = 0, vh = 0, trackW = 0, roadW = 0;
@@ -156,27 +173,45 @@
       const topY = title.offsetTop + title.offsetHeight + Math.min(24, vh * 0.02);
       const roadTop = roadWrap.offsetTop + ROAD_Y - CAR - 8;
       const avail = roadTop - topY;
-      // horizontal masonry: equal-height rows, each piece keeps its own proportions,
-      // and every new piece goes onto whichever row is currently shortest
+      // horizontal bento: R rows of square cells; big projects take 2×2, wide covers 2×1,
+      // tall covers a full-height column; packed densely left to right
       const gap = clamp(vw * 0.012, 10, 22);
-      const target = vw < 600 ? 175 : clamp(vh * 0.28, 150, 320);
-      const R = clamp(Math.round((avail + gap) / (target + gap)), 2, 4);
-      const H = Math.max(60, (avail - gap * (R - 1)) / R);
-      const rowsX = new Array(R).fill(gutter);
+      const R = vw < 600 && avail > 420 ? 3 : 2;
+      const cell = Math.max(60, (avail - gap * (R - 1)) / R);
+      const occ = []; // occ[col][row] = taken
+      const free = (c, r) => !(occ[c] && occ[c][r]);
+      const take = (c, r) => { (occ[c] = occ[c] || [])[r] = true; };
+      let maxCol = 0;
       items.forEach((it) => {
-        const ratio = clamp(it.d.w / it.d.h, 0.5, 2.2);
-        it.h = Math.round(H); it.w = Math.round(H * ratio);
-        let row = 0;
-        for (let r = 1; r < R; r++) if (rowsX[r] < rowsX[row]) row = r;
-        it.hx = rowsX[row];
-        it.hy = topY + row * (H + gap);
-        rowsX[row] += it.w + gap;
+        const n = it.p.items.length;
+        const ratio = it.d.w / it.d.h;
+        let sw = 1, sh = 1;
+        if (n >= 5) { sw = 2; sh = 2; }
+        else if (ratio > 1.35) sw = 2;
+        else if (ratio < 0.72) sh = R;
+        sh = Math.min(sh, R);
+        let placed = false;
+        for (let c = 0; !placed; c++) {
+          for (let r = 0; r + sh <= R && !placed; r++) {
+            let ok = true;
+            for (let dc = 0; dc < sw && ok; dc++) for (let dr = 0; dr < sh && ok; dr++) ok = free(c + dc, r + dr);
+            if (!ok) continue;
+            for (let dc = 0; dc < sw; dc++) for (let dr = 0; dr < sh; dr++) take(c + dc, r + dr);
+            it.hx = gutter + c * (cell + gap);
+            it.hy = topY + r * (cell + gap);
+            it.w = Math.round(sw * cell + (sw - 1) * gap);
+            it.h = Math.round(sh * cell + (sh - 1) * gap);
+            maxCol = Math.max(maxCol, c + sw);
+            placed = true;
+          }
+        }
         it.r = Math.min(it.w, it.h) * 0.5;
         it.el.style.width = it.w + 'px';
         it.el.style.height = it.h + 'px';
+        it.el.classList.toggle('tile-big', it.w > cell * 1.5 && it.h > cell * 1.5);
         if (!physics) { it.x = it.hx + it.w / 2; it.y = it.hy + it.h / 2; it.a = 0; }
       });
-      trackW = Math.max(...rowsX) - gap + gutter;
+      trackW = gutter + maxCol * (cell + gap) - gap + gutter;
       track.style.width = trackW + 'px';
       roadW = roadWrap.clientWidth;
       roadSvg.setAttribute("viewBox", `0 0 ${roadW} ${roadWrap.clientHeight}`);
@@ -216,7 +251,18 @@
       const cxm = carX + CAR / 2;
       const yL = wave(cxm - 16), yR = wave(cxm + 16), yC = wave(cxm);
       const ang = Math.atan2(yR - yL, 32) * 180 / Math.PI;
-      car.style.transform = `translate(${carX}px, ${ROAD_Y + yC - CAR + 4}px) rotate(${ang}deg) scaleX(${facing})`;
+      const ix = carX + idle.dx;
+      car.style.transform = `translate(${ix}px, ${ROAD_Y + yC - CAR + 4 - idle.hop}px) rotate(${ang + idle.tilt * facing}deg) scaleX(${facing})`;
+      // exhaust puffs out of the back of the car while it revs
+      const rearX = facing > 0 ? ix - 4 : ix + CAR + 4;
+      puffs.forEach((p, k) => {
+        const age = idle.puffAge[k];
+        if (age < 0 || age > 0.8) { p.style.opacity = '0'; return; }
+        const u = age / 0.8;
+        const s = 0.5 + u * 1.3;
+        p.style.opacity = String((1 - u) * 0.55);
+        p.style.transform = `translate(${rearX - facing * (6 + u * 26) - 7}px, ${ROAD_Y - 14 - u * 14 - k * 3}px) scale(${s})`;
+      });
     }
 
     function render(force) {
@@ -235,6 +281,52 @@
       loadVisible();
     }
 
+    /* ---------- idle "rev": tells people the car can be driven ----------
+       After 1.2s untouched, every 2.6s: two quick hops with exhaust puffs (a toy revving),
+       then a small nudge toward the open road and back. Any movement or touch resets it. */
+    const idle = { t: 0, dx: 0, hop: 0, tilt: 0, puffAge: [-1, -1] };
+    const puffs = [0, 1].map(() => {
+      const p = document.createElement('span');
+      p.className = 'car-puff';
+      roadWrap.appendChild(p);
+      return p;
+    });
+    // reduced motion: no hopping; a "Drag →" label fades in and out beside the car instead
+    const dragLabel = document.createElement('span');
+    dragLabel.className = 'car-drag-label';
+    dragLabel.textContent = 'Drag →';
+    dragLabel.setAttribute('aria-hidden', 'true');
+    roadWrap.appendChild(dragLabel);
+    const IDLE_DELAY = 1.2, IDLE_CYCLE = 2.6;
+    function updateIdle(dt, v) {
+      const busy = Math.abs(v) > 0.3 || carDrag || physics || arranging;
+      idle.t = busy ? 0 : idle.t + dt;
+      idle.dx = idle.hop = idle.tilt = 0;
+      idle.puffAge[0] = idle.puffAge[1] = -1;
+      const on = idle.t >= IDLE_DELAY;
+      if (reduceMotion) {
+        const t = on ? (idle.t - IDLE_DELAY) % IDLE_CYCLE : 0;
+        dragLabel.style.opacity = on ? String(0.25 + 0.75 * Math.sin((t / IDLE_CYCLE) * Math.PI)) : '0';
+        dragLabel.style.transform = `translate(${carX + CAR + 10}px, ${ROAD_Y - CAR * 0.7}px)`;
+        return;
+      }
+      if (!on) return;
+      const t = (idle.t - IDLE_DELAY) % IDLE_CYCLE;
+      // two hops, 0.28s each; nose lifts on the way up
+      for (let k = 0; k < 2; k++) {
+        const h = (t - k * 0.28) / 0.28;
+        if (h >= 0 && h < 1) {
+          idle.hop = Math.sin(h * Math.PI) * (k ? 5 : 8);
+          idle.tilt = -Math.sin(h * Math.PI) * 5;
+        }
+        idle.puffAge[k] = t - k * 0.28;
+      }
+      // nudge toward the side with more road, then settle back
+      const dir = carX < (roadW - CAR) * 0.85 ? 1 : -1;
+      const n = (t - 0.7) / 0.9;
+      if (n > 0 && n < 1) idle.dx = dir * 14 * Math.sin(n * Math.PI) * (1 - n * 0.3);
+    }
+
     function step(dt) {
       // car eases towards where it's dragged
       prevCarX = carX;
@@ -243,6 +335,7 @@
       if (Math.abs(v) > 0.3) facing = v > 0 ? 1 : -1;
       wobbleA = Math.min(16, wobbleA * 0.93 + Math.abs(v) * 0.18);
       wobbleT += dt;
+      updateIdle(dt, v);
       car.setAttribute('aria-valuenow', String(Math.round((carX / Math.max(1, roadW - CAR)) * 100)));
       if (physics) simulate(dt);
       if (arranging) arrangeStep();
@@ -332,7 +425,7 @@
       arrangeFrom = items.map((it) => ({ x: it.x, y: it.y, a: ((it.a % (Math.PI * 2)) + Math.PI * 3) % (Math.PI * 2) - Math.PI }));
       arrangeStart = performance.now();
       arranging = 1;
-      hint.textContent = 'Drag the car';
+      hint.textContent = 'Drag the car · tap a project';
     }
     function arrangeStep() {
       const t = performance.now() - arrangeStart;

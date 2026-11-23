@@ -1,0 +1,21 @@
+{
+  "provider": "freesound",
+  "query": "marker line draw",
+  "license_policy": "cc0",
+  "ordering": "relevance; popularity is supporting evidence only",
+  "results": [
+    {
+      "id": "fs:321137",
+      "title": "Sharpie marker drawing circle 01.wav",
+      "author": "elliott.klein",
+      "duration_seconds": 0.805333,
+      "preview_url": "https://cdn.freesound.org/previews/321/321137_2816253-hq.mp3",
+      "downloads": 5347,
+      "page_url": "https://freesound.org/people/elliott.klein/sounds/321137/",
+      "license_label": "Creative Commons 0",
+      "description": "Drawing a circle with a Super Sharpie Permanent Marker. Recorded using an AKG Blue Line se300b/ck93 mic.",
+      "rating": 4.8,
+      "rating_count": 44
+    }
+  ]
+}

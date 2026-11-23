@@ -1,0 +1,60 @@
+{
+  "provider": "freesound",
+  "query": "cardboard rustle",
+  "license_policy": "cc0",
+  "ordering": "relevance; popularity is supporting evidence only",
+  "results": [
+    {
+      "id": "fs:234222",
+      "title": "Cardboard Rip 2",
+      "author": "piedoom",
+      "duration_seconds": 0.487625,
+      "preview_url": "https://cdn.freesound.org/previews/234/234222_1427986-hq.mp3",
+      "downloads": 323,
+      "page_url": "https://freesound.org/people/piedoom/sounds/234222/",
+      "license_label": "Creative Commons 0",
+      "description": "The sound of ripping cardboard. Less violent and shorter than Cardboard Rip 1.",
+      "rating": 5.0,
+      "rating_count": 4
+    },
+    {
+      "id": "fs:607123",
+      "title": "Windbreaker Pop",
+      "author": "VANWINKLE3",
+      "duration_seconds": 1.001,
+      "preview_url": "https://cdn.freesound.org/previews/607/607123_7226936-hq.mp3",
+      "downloads": 451,
+      "page_url": "https://freesound.org/people/VANWINKLE3/sounds/607123/",
+      "license_label": "Creative Commons 0",
+      "description": "The sound caught my attention and I thought others might find it useful. The sound comes from a small cardboard box with a glossy exterior being removed from a slightly bigger cardboard box causing the little pop at the end.",
+      "rating": 5.0,
+      "rating_count": 13
+    },
+    {
+      "id": "fs:513303",
+      "title": "paper crinkle",
+      "author": "charlesart",
+      "duration_seconds": 1.94619,
+      "preview_url": "https://cdn.freesound.org/previews/513/513303_10403568-hq.mp3",
+      "downloads": 123,
+      "page_url": "https://freesound.org/people/charlesart/sounds/513303/",
+      "license_label": "Creative Commons 0",
+      "description": "Recording of crumpling notebook paper, edited with Garageband. Recorded on iPhone 6s.",
+      "rating": null,
+      "rating_count": null
+    },
+    {
+      "id": "fs:334212",
+      "title": "Cardboard Box Rustle 2",
+      "author": "WasabiWielder",
+      "duration_seconds": 0.68,
+      "preview_url": "https://cdn.freesound.org/previews/334/334212_4290188-hq.mp3",
+      "downloads": 274,
+      "page_url": "https://freesound.org/people/WasabiWielder/sounds/334212/",
+      "license_label": "Creative Commons 0",
+      "description": "A friend moving his hands around a cardboard box. The box had tape on it, hence the slight rustle. Recorded on a Zoom Q4 WAV Format.",
+      "rating": 4.8,
+      "rating_count": 4
+    }
+  ]
+}

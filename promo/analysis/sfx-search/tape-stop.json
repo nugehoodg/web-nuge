@@ -1,0 +1,60 @@
+{
+  "provider": "freesound",
+  "query": "tape stop",
+  "license_policy": "cc0",
+  "ordering": "relevance; popularity is supporting evidence only",
+  "results": [
+    {
+      "id": "fs:842582",
+      "title": "Vinyl Rewind Dark 01",
+      "author": "loganzsound",
+      "duration_seconds": 0.515167,
+      "preview_url": "https://cdn.freesound.org/previews/842/842582_16682330-hq.mp3",
+      "downloads": 311,
+      "page_url": "https://freesound.org/people/loganzsound/sounds/842582/",
+      "license_label": "Creative Commons 0",
+      "description": "A Chillhop record being spun backwards on a AT-LP60X, recorded into a Focusrite Scarlett 18i20, the pitch was shifted and cut to be a bit deeper.",
+      "rating": 4.8,
+      "rating_count": 8
+    },
+    {
+      "id": "fs:706680",
+      "title": "sign-off_sign-on.wav",
+      "author": "phylobates",
+      "duration_seconds": 0.687,
+      "preview_url": "https://cdn.freesound.org/previews/706/706680_9142988-hq.mp3",
+      "downloads": 38,
+      "page_url": "https://freesound.org/people/phylobates/sounds/706680/",
+      "license_label": "Creative Commons 0",
+      "description": "On tape noise of an old open reel field recorder being stopped then started. Some processing to eliminate background voice. Recorded in 1969",
+      "rating": null,
+      "rating_count": null
+    },
+    {
+      "id": "fs:511134",
+      "title": "ok dann mach ich noch mal auf stopp.wav",
+      "author": "ost-soundwerkstatt",
+      "duration_seconds": 1.47692,
+      "preview_url": "https://cdn.freesound.org/previews/511/511134_11171056-hq.mp3",
+      "downloads": 39,
+      "page_url": "https://freesound.org/people/ost-soundwerkstatt/sounds/511134/",
+      "license_label": "Creative Commons 0",
+      "description": "Recorded during \"Kunst & Krempel 2019\" at Olympiapark in Munich, Germany. \"ok I'll stop the tape\"",
+      "rating": null,
+      "rating_count": null
+    },
+    {
+      "id": "fs:613348",
+      "title": "13_CUE STOP.wav",
+      "author": "gear_clinkz",
+      "duration_seconds": 1.244,
+      "preview_url": "https://cdn.freesound.org/previews/613/613348_932556-hq.mp3",
+      "downloads": 40,
+      "page_url": "https://freesound.org/people/gear_clinkz/sounds/613348/",
+      "license_label": "Creative Commons 0",
+      "description": "Recording of a Panasonic NV-J30HQ VCR.",
+      "rating": null,
+      "rating_count": null
+    }
+  ]
+}

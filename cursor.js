@@ -98,7 +98,7 @@
   let squash = 1, squashV = 0;
   let hoverScale = 1, hoverTarget = 1;
 
-  const interactive = 'a, button, [role="slider"], .clip, .item, .ve-playhead, .ve-lane, .road-wrap, .track.physics .design, .ve-preview';
+  const interactive = '.tile, a, button, [role="slider"], .clip, .item, .ve-playhead, .ve-lane, .road-wrap, .track.physics .design, .ve-preview';
 
   addEventListener('pointermove', (e) => {
     if (e.pointerType !== 'mouse') return;

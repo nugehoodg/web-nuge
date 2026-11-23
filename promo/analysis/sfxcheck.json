@@ -1,0 +1,176 @@
+[
+ {
+  "note": "s1 hand taps, ring blooms",
+  "at": 16,
+  "sfx_minus_music_db": -5.7,
+  "peak_err_frames": 3.3
+ },
+ {
+  "note": "s1 ring opens",
+  "at": 19,
+  "sfx_minus_music_db": -6.2,
+  "peak_err_frames": 0.3
+ },
+ {
+  "note": "s2 divider drawn (pen scratch 1)",
+  "at": 155,
+  "sfx_minus_music_db": 7.0,
+  "peak_err_frames": 0.6
+ },
+ {
+  "note": "s2 line turns down (2)",
+  "at": 179,
+  "sfx_minus_music_db": 4.7,
+  "peak_err_frames": 0.6
+ },
+ {
+  "note": "s2 descent (3)",
+  "at": 203,
+  "sfx_minus_music_db": 5.9,
+  "peak_err_frames": 0.6
+ },
+ {
+  "note": "s2 line closes onto the road (light knock)",
+  "at": 233,
+  "sfx_minus_music_db": -9.3,
+  "peak_err_frames": 0.9
+ },
+ {
+  "note": "s3 hand grabs the car",
+  "at": 242,
+  "sfx_minus_music_db": -12.5,
+  "peak_err_frames": 0.0
+ },
+ {
+  "note": "s3 car rolls",
+  "at": 278,
+  "sfx_minus_music_db": -4.2,
+  "peak_err_frames": 2.1
+ },
+ {
+  "note": "s3 road hop 1",
+  "at": 297,
+  "sfx_minus_music_db": -5.1,
+  "peak_err_frames": 0.3
+ },
+ {
+  "note": "s3 road hop 2 (quieter, anti machine-gun)",
+  "at": 356,
+  "sfx_minus_music_db": -6.5,
+  "peak_err_frames": 0.3
+ },
+ {
+  "note": "s4 hand taps Destroy",
+  "at": 415,
+  "sfx_minus_music_db": -2.6,
+  "peak_err_frames": 0.3
+ },
+ {
+  "note": "s4 designs take off",
+  "at": 419,
+  "sfx_minus_music_db": -1.6,
+  "peak_err_frames": 0.0
+ },
+ {
+  "note": "s4 time freezes",
+  "at": 444,
+  "sfx_minus_music_db": -2.0,
+  "peak_err_frames": 0.9
+ },
+ {
+  "note": "s4 swell peaks into the landing",
+  "at": 533,
+  "sfx_minus_music_db": 3.1,
+  "peak_err_frames": 0.6
+ },
+ {
+  "note": "s4 designs land on the road (impact #1)",
+  "at": 533,
+  "sfx_minus_music_db": 3.1,
+  "peak_err_frames": 0.6
+ },
+ {
+  "note": "s5 rod sweeps past the lens",
+  "at": 584,
+  "sfx_minus_music_db": -1.0,
+  "peak_err_frames": 0.3
+ },
+ {
+  "note": "s6 hand grabs the playhead",
+  "at": 593,
+  "sfx_minus_music_db": -13.9,
+  "peak_err_frames": 0.0
+ },
+ {
+  "note": "s6 clip 2",
+  "at": 607,
+  "sfx_minus_music_db": -13.7,
+  "peak_err_frames": 0.9
+ },
+ {
+  "note": "s6 clip 3",
+  "at": 621,
+  "sfx_minus_music_db": -17.5,
+  "peak_err_frames": 0.9
+ },
+ {
+  "note": "s6 clip 4",
+  "at": 636,
+  "sfx_minus_music_db": -16.7,
+  "peak_err_frames": 0.9
+ },
+ {
+  "note": "s6 push into the preview",
+  "at": 651,
+  "sfx_minus_music_db": -9.1,
+  "peak_err_frames": 0.3
+ },
+ {
+  "note": "s7 rod sweeps past the lens",
+  "at": 702,
+  "sfx_minus_music_db": -1.9,
+  "peak_err_frames": 0.3
+ },
+ {
+  "note": "s8 poke camera",
+  "at": 710,
+  "sfx_minus_music_db": -7.7,
+  "peak_err_frames": 3.9
+ },
+ {
+  "note": "s8 camera lifts",
+  "at": 714,
+  "sfx_minus_music_db": -6.3,
+  "peak_err_frames": 0.0
+ },
+ {
+  "note": "s8 poke controller",
+  "at": 739,
+  "sfx_minus_music_db": -10.8,
+  "peak_err_frames": 3.9
+ },
+ {
+  "note": "s8 controller lifts",
+  "at": 743,
+  "sfx_minus_music_db": -7.5,
+  "peak_err_frames": 0.0
+ },
+ {
+  "note": "s8 poke photo",
+  "at": 769,
+  "sfx_minus_music_db": -8.0,
+  "peak_err_frames": 3.9
+ },
+ {
+  "note": "s8 photo lifts (About Me)",
+  "at": 773,
+  "sfx_minus_music_db": -6.7,
+  "peak_err_frames": 0.0
+ },
+ {
+  "note": "s9 stamp hits (impact #2)",
+  "at": 828,
+  "sfx_minus_music_db": 1.9,
+  "peak_err_frames": 0.6
+ }
+]

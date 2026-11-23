@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hands-on — styleframes</title>
+<style>
+  @font-face { font-family: "NHG Display"; src: url("../../fonts/NeueHaasDisplayXThin.ttf"); font-weight: 200; }
+  @font-face { font-family: "NHG Display"; src: url("../../fonts/NeueHaasDisplayLight.ttf"); font-weight: 300; }
+  @font-face { font-family: "NHG Text"; src: url("../../fonts/NeueHaasTextRoman.ttf"); font-weight: 400; }
+  :root { --ink: #0a0a0a; --paper: #fff; --hand-light: #f6b24a; --hand-dark: #c97708; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #777; font-family: "NHG Text", sans-serif; }
+  .frame {
+    position: relative; width: 1920px; height: 1080px; overflow: hidden;
+    background: var(--paper); margin: 0 0 40px;
+  }
+  .full { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+  .layer { position: absolute; inset: 0; overflow: visible; }
+  .index {
+    position: absolute; top: 48px; right: 60px; z-index: 5;
+    background: var(--paper); padding: 6px 16px 10px; border-radius: 3px;
+    font-family: "NHG Display"; font-weight: 200; font-size: 44px; letter-spacing: -0.02em; color: var(--ink);
+  }
+  .index b { font-weight: 300; }
+
+  /* F2: the page is a plane the camera has pushed into */
+  .stage { position: absolute; inset: 0; perspective: 2400px; perspective-origin: 30% 80%; }
+  .plane {
+    position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+    transform-origin: 20% 90%;
+    transform: translate(140px, -150px) scale(1.32) rotateX(9deg) rotateY(-11deg) rotateZ(1.2deg);
+    box-shadow: 0 40px 120px rgba(0,0,0,.18);
+  }
+
+  /* F3: end card */
+  .end { position: absolute; inset: 0; display: grid; place-items: center; }
+  .end .stack { display: flex; flex-direction: column; align-items: center; gap: 44px; transform: translateY(-20px); }
+  .end img { width: 300px; height: 300px; }
+  .end .url { font-family: "NHG Display"; font-weight: 200; font-size: 76px; letter-spacing: -0.03em; color: var(--ink); }
+  .end .rule { width: 1774px; height: 2px; background: var(--ink); position: absolute; left: 73px; bottom: 150px; }
+  .end .who { position: absolute; left: 73px; bottom: 73px; font-family: "NHG Display"; font-weight: 300; font-size: 44px; letter-spacing: -0.03em; }
+  .end .who span { font-weight: 200; }
+</style>
+</head>
+<body>
+
+<!-- F1 · opening: the hand taps the orbit awake -->
+<section class="frame" id="f1">
+  <img class="full" src="shots/landing@2x.png" alt="">
+  <svg class="layer" viewBox="0 0 1920 1080" data-hand='{"x":1236,"y":548,"rot":-28,"s":3.0,"rod":150,"ripple":true}'></svg>
+</section>
+
+<!-- F2 · key moment: Destroy — the hand has just pressed it, the wall comes down -->
+<section class="frame" id="f2">
+  <div class="stage">
+    <div class="plane">
+      <img class="full" src="shots/destroy@2x.png" alt="">
+      <svg class="layer" viewBox="0 0 1920 1080" data-hand='{"x":248,"y":1052,"rot":-30,"s":2.2,"rod":170,"ripple":true,"squash":0.9}'></svg>
+    </div>
+  </div>
+  <div class="index">02 <b>/</b> 04</div>
+</section>
+
+<!-- F3 · ending: stamp, address, one last tap -->
+<section class="frame" id="f3">
+  <div class="end">
+    <div class="stack">
+      <img src="../assets/stamp-1200.png" alt="">
+      <div class="url">anugerah.vercel.app</div>
+    </div>
+    <div class="rule"></div>
+    <div class="who">Anugerah&nbsp; <span>Creative Designer</span></div>
+  </div>
+  <svg class="layer" viewBox="0 0 1920 1080" data-hand='{"x":1262,"y":716,"rot":-36,"s":3.0,"rod":160,"ripple":true}'></svg>
+</section>
+
+<script>
+// Same toy hand as the site's cursor.js, drawn bigger; fingertip at (x, y).
+const DEFS = `
+  <defs>
+    <linearGradient id="tcSkin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6b24a"/><stop offset="1" stop-color="#c97708"/>
+    </linearGradient>
+    <linearGradient id="tcCuff" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d9d9d9"/>
+    </linearGradient>
+    <filter id="tcOutline" x="-30%" y="-30%" width="160%" height="160%">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="1.3" result="grow"/>
+      <feFlood flood-color="#0a0a0a"/>
+      <feComposite in2="grow" operator="in" result="edge"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+      <feOffset in="blur" dx="2" dy="5" result="drop"/>
+      <feComponentTransfer in="drop" result="shadow"><feFuncA type="linear" slope=".22"/></feComponentTransfer>
+      <feMerge><feMergeNode in="shadow"/><feMergeNode in="edge"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>`;
+const HAND = `
+  <g filter="url(#tcOutline)">
+    <rect x="-5" y="53" width="27" height="11" rx="3.5" fill="url(#tcCuff)"/>
+    <circle cx="10.5" cy="27.5" r="6.6" fill="url(#tcSkin)"/>
+    <circle cx="18" cy="28.6" r="6.2" fill="url(#tcSkin)"/>
+    <circle cx="24.4" cy="31" r="5.6" fill="url(#tcSkin)"/>
+    <rect x="-9" y="25" width="35" height="31" rx="11" fill="url(#tcSkin)"/>
+    <rect x="-6.5" y="0" width="13" height="38" rx="6.5" fill="url(#tcSkin)"/>
+    <path d="M-8 44 C -2 38, 9 37, 15 40" fill="none" stroke="#c97708" stroke-width="2.2" stroke-linecap="round" opacity=".55"/>
+    <path d="M7 31.5 v6 M14.5 32.5 v5.5 M21 34 v5" stroke="#c97708" stroke-width="1.6" stroke-linecap="round" opacity=".5"/>
+    <rect x="-3.6" y="4" width="3.4" height="17" rx="1.7" fill="#fff" opacity=".6"/>
+    <ellipse cx="-2" cy="31.5" rx="4" ry="2.4" fill="#fff" opacity=".45"/>
+  </g>`;
+function rod(len) {
+  // three telescoping tubes in hand space, thick at the held end
+  const ax = 8.5, ay = 63, seg = [0, len * 0.29, len * 0.58, len];
+  const w = [4.8, 6.8, 9];
+  let out = '';
+  for (let i = 0; i < 3; i++) {
+    const y1 = ay + seg[i], y2 = ay + seg[i + 1];
+    out += `<line x1="${ax}" y1="${y1}" x2="${ax}" y2="${y2}" stroke="#0a0a0a" stroke-width="${w[i] + 2.6}" stroke-linecap="round"/>`;
+  }
+  for (let i = 0; i < 3; i++) {
+    const y1 = ay + seg[i], y2 = ay + seg[i + 1];
+    out += `<line x1="${ax}" y1="${y1}" x2="${ax}" y2="${y2}" stroke="#f3f3f3" stroke-width="${w[i]}" stroke-linecap="round"/>`;
+  }
+  out += `<line x1="${ax - 1.6}" y1="${ay + 2}" x2="${ax - 2.4}" y2="${ay + len - 6}" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>`;
+  out += `<circle cx="${ax}" cy="${ay + len}" r="6.5" fill="#2a2a2a" stroke="#0a0a0a" stroke-width="1.4"/>`;
+  return out;
+}
+document.querySelectorAll('svg[data-hand]').forEach((svg, i) => {
+  const o = JSON.parse(svg.dataset.hand);
+  const sq = o.squash || 1;
+  const ripple = o.ripple
+    ? `<circle cx="${o.x}" cy="${o.y}" r="${18 * o.s}" fill="none" stroke="#0a0a0a" stroke-width="2.5" opacity=".55"/>
+       <circle cx="${o.x}" cy="${o.y}" r="${30 * o.s}" fill="none" stroke="#0a0a0a" stroke-width="1.2" opacity=".22"/>`
+    : '';
+  svg.innerHTML = DEFS.replaceAll('tc', 'tc' + i) + ripple +
+    `<g transform="translate(${o.x} ${o.y}) rotate(${o.rot}) scale(${o.s * (2 - sq)} ${o.s * sq})">${rod(o.rod)}${HAND.replaceAll('tc', 'tc' + i)}</g>`;
+});
+</script>
+</body>
+</html>

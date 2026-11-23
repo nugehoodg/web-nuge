@@ -1,0 +1,34 @@
+{
+  "provider": "freesound",
+  "query": "paper flutter",
+  "license_policy": "cc0",
+  "ordering": "relevance; popularity is supporting evidence only",
+  "results": [
+    {
+      "id": "fs:468113",
+      "title": "Flutter.wav",
+      "author": "Aquafeniz",
+      "duration_seconds": 1.81626,
+      "preview_url": "https://cdn.freesound.org/previews/468/468113_9930348-hq.mp3",
+      "downloads": 164,
+      "page_url": "https://freesound.org/people/Aquafeniz/sounds/468113/",
+      "license_label": "Creative Commons 0",
+      "description": "Foley - Paper Flutter",
+      "rating": null,
+      "rating_count": null
+    },
+    {
+      "id": "fs:676456",
+      "title": "Flapping 4",
+      "author": "NearTheAtmoshphere",
+      "duration_seconds": 1.0,
+      "preview_url": "https://cdn.freesound.org/previews/676/676456_2578040-hq.mp3",
+      "downloads": 478,
+      "page_url": "https://freesound.org/people/NearTheAtmoshphere/sounds/676456/",
+      "license_label": "Creative Commons 0",
+      "description": "Flapping a thick piece of paper. Microphone: Neumann TLM 103 Recorded on an API Legacy Plus console Mono WAV File",
+      "rating": 5.0,
+      "rating_count": 15
+    }
+  ]
+}

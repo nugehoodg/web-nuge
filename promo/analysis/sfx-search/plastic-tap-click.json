@@ -1,0 +1,60 @@
+{
+  "provider": "freesound",
+  "query": "plastic tap click",
+  "license_policy": "cc0",
+  "ordering": "relevance; popularity is supporting evidence only",
+  "results": [
+    {
+      "id": "fs:872341",
+      "title": "Click_9",
+      "author": "SignatureSoundsOrg",
+      "duration_seconds": 0.4735,
+      "preview_url": "https://cdn.freesound.org/previews/872/872341_19205925-hq.mp3",
+      "downloads": 413,
+      "page_url": "https://freesound.org/people/SignatureSoundsOrg/sounds/872341/",
+      "license_label": "Creative Commons 0",
+      "description": "Short click sound effect, with a mix of sharp, mechanical, digital and subtle clicks. Useful for games, UI sounds, buttons, switches, menus, Foley and general sound design. This loop is part of a larger collection of original audio resources. Explore the full pack for more sounds, loops. CC0 – Public Domain No credit or attribution is required. You can use, edit, remix and adapt this loop for personal or commercial projects without asking permission. I&#x27;d always love to see how my sounds are being used! Feel free to share your project with me, or add a link to Signature Sounds website or the original Freesound download in your game&#x27;s credits, description or project page. It&#x27;s not required, but it&#x27;s always appreciated and helps others discover more free sounds. Need more sounds? Explore thousands of free sound effects, field recordings, Foley, samples and loops at: https://signaturesounds.org Everything is released under a CC0 public domain licence. Happy creating!",
+      "rating": 5.0,
+      "rating_count": 6
+    },
+    {
+      "id": "fs:704259",
+      "title": "IDCard_CaseInsert.wav",
+      "author": "BaggoNotes",
+      "duration_seconds": 0.256146,
+      "preview_url": "https://cdn.freesound.org/previews/704/704259_15107322-hq.mp3",
+      "downloads": 90,
+      "page_url": "https://freesound.org/people/BaggoNotes/sounds/704259/",
+      "license_label": "Creative Commons 0",
+      "description": "Insertion of my school ID into its plastic case. Captured with Warm Audio 45 mic.",
+      "rating": null,
+      "rating_count": null
+    },
+    {
+      "id": "fs:233653",
+      "title": "LEGO Click 5",
+      "author": "rioforce",
+      "duration_seconds": 0.0606349,
+      "preview_url": "https://cdn.freesound.org/previews/233/233653_4067126-hq.mp3",
+      "downloads": 507,
+      "page_url": "https://freesound.org/people/rioforce/sounds/233653/",
+      "license_label": "Creative Commons 0",
+      "description": "Tapping LEGO bricks together",
+      "rating": 4.3,
+      "rating_count": 8
+    },
+    {
+      "id": "fs:670000",
+      "title": "Lego Click (short)",
+      "author": "ImmergoMedia",
+      "duration_seconds": 0.177375,
+      "preview_url": "https://cdn.freesound.org/previews/670/670000_3086325-hq.mp3",
+      "downloads": 644,
+      "page_url": "https://freesound.org/people/ImmergoMedia/sounds/670000/",
+      "license_label": "Creative Commons 0",
+      "description": "Two pieces of lego gently being tapped together.",
+      "rating": 4.9,
+      "rating_count": 18
+    }
+  ]
+}

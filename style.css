@@ -136,6 +136,15 @@ h1, h2, .section-title, .toggle, .ve-project, .ve-label, .clip .body, .tip stron
 .car:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 /* bigger invisible hit area for fingers */
 .car::after { content: ""; position: absolute; inset: -14px; }
+/* exhaust puffs from the idle rev (positioned by main.js) */
+.car-puff {
+  position: absolute; left: 0; top: 0; width: 14px; height: 14px; border-radius: 50%;
+  background: #cfcfcf; border: 1.5px solid #0a0a0a; opacity: 0; pointer-events: none;
+}
+.car-drag-label {
+  position: absolute; left: 0; top: 0; opacity: 0; pointer-events: none; white-space: nowrap;
+  font-family: var(--display); font-weight: 300; font-size: clamp(14px, 1vw, 18px); letter-spacing: -0.01em;
+}
 
 .gd-bottom {
   position: absolute; z-index: 4;
@@ -316,24 +325,147 @@ html.toy-cursor, html.toy-cursor * { cursor: none !important; }
   --hand-light: #f6b24a; --hand-dark: #c97708;   /* stamp orange; change to recolour */
 }
 
-/* gallery project cards (from projects.json) */
+/* =================== Bento project tiles =================== */
 .design { margin: 0; }
 .design video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; display: block; }
-.design figcaption {
+.tile { cursor: pointer; outline: none; }
+.tile .tile-media { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none;
+  transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.tile-info {
   position: absolute; left: 0; right: 0; bottom: 0;
-  padding: 18px 10px 8px;
-  background: linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,0));
+  padding: 36px 14px 12px;
+  background: linear-gradient(to top, rgba(0,0,0,.7), rgba(0,0,0,0));
   color: #fff; pointer-events: none;
-  display: flex; flex-direction: column; gap: 2px;
-  opacity: 0; transform: translateY(6px);
-  transition: opacity .2s, transform .2s;
+  display: grid; grid-template-columns: auto 1fr; column-gap: 10px; align-items: baseline;
 }
-.design figcaption span { font-family: var(--display); font-weight: 300; font-size: clamp(14px, 1.1vw, 20px); letter-spacing: -0.01em; }
-.design figcaption small { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; opacity: .75; }
+.tile-num { grid-row: span 2; font-family: var(--display); font-weight: 200; font-size: clamp(16px, 1.3vw, 26px); opacity: .8; }
+.tile-info strong { font-family: var(--display); font-weight: 300; font-size: clamp(16px, 1.3vw, 26px); letter-spacing: -0.02em; line-height: 1.1; }
+.tile-info small { font-size: clamp(10px, .7vw, 13px); text-transform: uppercase; letter-spacing: .06em; opacity: .75; }
+.tile-big .tile-info strong { font-size: clamp(22px, 2vw, 40px); }
 @media (hover: hover) {
-  .design:hover figcaption { opacity: 1; transform: none; }
+  .track:not(.physics) .tile:hover .tile-media { transform: scale(1.04); }
 }
-.track.physics .design figcaption { display: none; }
+.tile:focus-visible { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--ink); }
+.track.physics .tile-info { display: none; }
+/* Print PDF: a quiet text link in the site's own voice (Display Light, hairline underline),
+   sitting on the title's baseline at the right edge. Visible because it's alone, not because it's loud. */
+.pdf-cta {
+  position: absolute; z-index: 4;
+  top: calc(var(--gutter) * .6); right: var(--gutter);
+  height: var(--fs-section);             /* same box as the title line… */
+  display: inline-flex; align-items: flex-end; gap: .4em;
+  padding: 0 0 .18em;                    /* …so the text lands on its baseline */
+  color: var(--ink);
+  font-family: var(--display); font-weight: 300;
+  font-size: var(--fs-ui); letter-spacing: -0.02em; /* same size as the landing's "Contact me" */
+}
+.pdf-cta span { border-bottom: 1px solid currentColor; padding-bottom: .12em; transition: border-color .2s; }
+.pdf-cta svg { width: 1em; height: 1em; flex: none; margin-bottom: .22em; }
+.pdf-cta svg path { stroke-width: 1.5; }
+.pdf-cta:hover span { border-bottom-width: 2px; padding-bottom: calc(.12em - 1px); }
+.pdf-cta:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.pdf-cta::after { content: ""; position: absolute; inset: -10px -8px; } /* comfortable touch target */
+
+/* =================== Project view =================== */
+html.pv-open { overflow: hidden; }
+.pv {
+  position: fixed; inset: 0; z-index: 1500; background: var(--paper);
+  display: flex; flex-direction: column;
+  opacity: 0; transform: translateY(16px); transition: opacity .22s ease, transform .22s ease;
+}
+.pv.show { opacity: 1; transform: none; }
+/* author `display:flex` beats the UA [hidden] rule, so restate it: a closed view must not cover the page */
+.pv[hidden] { display: none; }
+.pv-bar {
+  flex: none; display: flex; align-items: center; justify-content: space-between;
+  padding: 14px var(--gutter); border-bottom: 2px solid var(--ink);
+}
+.pv-index { font-family: var(--display); font-weight: 200; font-size: var(--fs-ui); }
+.pv-actions { display: flex; gap: 6px; }
+.pv-btn {
+  height: var(--chip-h); min-width: var(--chip-h); padding: 0 .55em; border-radius: 3px;
+  background: var(--chip); font-family: var(--display); font-weight: 300; font-size: var(--fs-ui);
+}
+.pv-btn:hover { background: #e2e2e2; }
+.pv-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.pv-body {
+  flex: 1; overflow-y: auto; display: grid; grid-template-columns: minmax(260px, 0.8fr) 2fr;
+  gap: clamp(24px, 4vw, 80px); padding: clamp(24px, 4vw, 64px) var(--gutter) var(--gutter);
+}
+.pv-side { position: sticky; top: 0; align-self: start; }
+.pv-title { font-family: var(--display); font-weight: 300; font-size: var(--fs-section); letter-spacing: -0.03em; line-height: 1; }
+.pv-summary { margin-top: .9em; font-size: clamp(16px, 1.2vw, 22px); line-height: 1.45; max-width: 34ch; }
+.pv-meta { margin-top: 1.6em; display: grid; grid-template-columns: auto 1fr; gap: 8px 18px; border-top: 2px solid var(--ink); padding-top: 14px; font-size: clamp(13px, .95vw, 17px); }
+.pv-meta dt { font-family: var(--display); font-weight: 200; text-transform: uppercase; letter-spacing: .06em; opacity: .7; }
+.pv-plates { display: flex; flex-direction: column; gap: clamp(24px, 3vw, 56px); }
+.pv-plate { margin: 0; }
+.pv-plate img, .pv-plate video { display: block; width: 100%; height: auto; max-height: 86vh; object-fit: contain; background: #f2f2f2; }
+.pv-plate figcaption { margin-top: 10px; font-size: clamp(12px, .85vw, 15px); display: flex; gap: 10px; }
+.pv-plate figcaption span { font-family: var(--display); font-weight: 300; }
+@media (max-width: 760px) {
+  .pv-body { grid-template-columns: 1fr; }
+  .pv-side { position: static; }
+  .pv-text { font-size: 15px; }
+}
+
+/* =================== Brand-guideline PDF (print only) =================== */
+#printDoc { display: none; }
+@media print {
+  @page { size: A4 landscape; margin: 0; }
+  html.printing body > *:not(#printDoc) { display: none !important; }
+  html.printing, html.printing body { background: #fff; }
+  html.printing #printDoc { display: block; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+.pdf-page {
+  position: relative; width: 297mm; height: 210mm; overflow: hidden; background: #fff; color: var(--ink);
+  padding: 14mm 16mm 18mm; page-break-after: always; break-after: page;
+  font-family: var(--text);
+}
+.pdf-foot {
+  position: absolute; left: 16mm; right: 16mm; bottom: 8mm; border-top: 0.4mm solid var(--ink); padding-top: 2.5mm;
+  display: flex; justify-content: space-between; font-size: 8pt; letter-spacing: .04em; text-transform: uppercase;
+}
+.pdf-head { display: flex; gap: 6mm; align-items: baseline; font-family: var(--display); font-weight: 300; font-size: 20pt; letter-spacing: -0.02em;
+  border-bottom: 0.4mm solid var(--ink); padding-bottom: 3mm; margin-bottom: 7mm; }
+.pdf-head span { font-weight: 200; }
+.pdf-cover { display: flex; flex-direction: column; justify-content: space-between; padding: 16mm; }
+.pdf-stamp { width: 42mm; height: 42mm; }
+.pdf-cover-t h1 { font-family: var(--display); font-weight: 300; font-size: 72pt; letter-spacing: -0.04em; line-height: .9; }
+.pdf-cover-t p { font-family: var(--display); font-weight: 200; font-size: 30pt; letter-spacing: -0.02em; margin-top: 3mm; }
+.pdf-cover-f { display: flex; justify-content: space-between; border-top: 0.4mm solid var(--ink); padding-top: 3mm; font-size: 9pt; text-transform: uppercase; letter-spacing: .06em; }
+.pdf-toc { list-style: none; columns: 2; column-gap: 14mm; }
+.pdf-toc li { break-inside: avoid; display: grid; grid-template-columns: 14mm 1fr; padding: 2.6mm 0; border-bottom: 0.25mm solid #ccc;
+  font-family: var(--display); font-weight: 300; font-size: 14pt; letter-spacing: -0.01em; }
+.pdf-toc li span { font-weight: 200; }
+.pdf-toc li em { grid-column: 2; font-style: normal; font-family: var(--text); font-size: 7.5pt; text-transform: uppercase; letter-spacing: .06em; opacity: .6; }
+.pdf-found { display: grid; grid-template-columns: 1fr 1fr; gap: 14mm; }
+.pdf-found h3 { font-family: var(--display); font-weight: 200; font-size: 11pt; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 5mm; }
+.pdf-swatches { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.pdf-sw { height: 36mm; border: 0.3mm solid #d9d9d9; padding: 4mm; display: flex; flex-direction: column; justify-content: space-between; font-size: 9pt; }
+.pdf-sw b { font-family: var(--display); font-weight: 300; font-size: 16pt; }
+.pdf-spec { font-family: var(--display); font-size: 26pt; letter-spacing: -0.02em; padding: 4mm 0; border-bottom: 0.25mm solid #ccc; }
+.pdf-spec.pdf-text { font-family: var(--text); font-size: 18pt; }
+.pdf-open { display: grid; grid-template-columns: 1fr 1.25fr; gap: 12mm; height: 100%; }
+.pdf-bignum { font-family: var(--display); font-weight: 200; font-size: 80pt; line-height: .8; letter-spacing: -0.04em; }
+.pdf-open h2 { font-family: var(--display); font-weight: 300; font-size: 34pt; letter-spacing: -0.03em; line-height: 1; margin: 6mm 0 5mm; }
+.pdf-summary { font-size: 11pt; line-height: 1.5; max-width: 95mm; }
+.pdf-meta { margin-top: 7mm; border-collapse: collapse; font-size: 9pt; width: 100%; max-width: 100mm; }
+.pdf-meta th, .pdf-meta td { text-align: left; padding: 2mm 0; border-top: 0.25mm solid #ccc; vertical-align: top; }
+.pdf-meta th { font-family: var(--display); font-weight: 200; text-transform: uppercase; letter-spacing: .06em; width: 32mm; }
+.pdf-open-r { position: relative; height: 168mm; background: #f2f2f2; overflow: hidden; }
+/* absolute fill + contain: the whole piece always fits the plate, never cropped */
+.pdf-open-r img, .pdf-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.pdf-plates { display: grid; gap: 6mm; height: 142mm; }
+.pdf-plates.n1 { grid-template-columns: 1fr; }
+.pdf-plates.n2 { grid-template-columns: 1fr 1fr; }
+.pdf-plates.n3 { grid-template-columns: 1fr 1fr 1fr; }
+.pdf-plates.n4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.pdf-plate { margin: 0; display: flex; flex-direction: column; min-height: 0; }
+.pdf-img { position: relative; flex: 1; min-height: 0; background: #f2f2f2; overflow: hidden; }
+.pdf-plate figcaption { font-size: 7.5pt; padding-top: 2mm; letter-spacing: .02em; }
+.pdf-plate figcaption b { font-family: var(--display); font-weight: 300; margin-right: 2mm; }
+.pdf-plate figcaption i { opacity: .6; }
 
 /* party popper = toy cursor switch; dim the icon when the toy hand is off */
 #confettiBtn[aria-pressed="false"] img { opacity: .35; }

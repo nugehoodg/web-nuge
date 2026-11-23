@@ -1,0 +1,221 @@
+{
+  "_note": "Edit freely: order = order on the site and in the PDF. 'summary' is the explanation shown when a project opens. 'year' and 'role' are optional (hidden when empty). Every src must also be listed in projects.json. Run python tools/manifest.py after editing.",
+  "projects": [
+    {
+      "id": "creatist",
+      "title": "Creatist",
+      "disciplines": "Branding · Web",
+      "year": "",
+      "role": "",
+      "summary": "An independent online publication for arts and creativity.",
+      "cover": "img/ct_web.png",
+      "items": [
+        "img/ct_web.png",
+        "img/ct_mobile.png",
+        "img/ct_wordmark.png",
+        "img/CT_lettermark-transparent.png"
+      ]
+    },
+    {
+      "id": "smoovee",
+      "title": "Smoovee",
+      "disciplines": "Branding",
+      "year": "",
+      "role": "",
+      "summary": "Brand and social visuals for Smoovee.",
+      "cover": "img/smoove-01.webp",
+      "items": [
+        "img/smoove-01.webp",
+        "img/smoove-02.webp"
+      ]
+    },
+    {
+      "id": "koe",
+      "title": "Koe",
+      "disciplines": "Branding · Poster · Product",
+      "year": "",
+      "role": "",
+      "summary": "A poster and product series for Koe.",
+      "cover": "img/koe1.webp",
+      "items": [
+        "img/koe1.webp",
+        "img/koe2.webp",
+        "img/koe3.webp"
+      ]
+    },
+    {
+      "id": "coinbase-base",
+      "title": "Coinbase & Base",
+      "disciplines": "Branding · Event",
+      "year": "",
+      "role": "",
+      "summary": "Event and recap graphics for Coinbase and Base.",
+      "cover": "img/base-event.webp",
+      "items": [
+        "img/base-event.webp",
+        "img/coinbase-recap.webp"
+      ]
+    },
+    {
+      "id": "concre",
+      "title": "Concre",
+      "disciplines": "Branding · Poster",
+      "year": "",
+      "role": "",
+      "summary": "Poster and identity work for Concre.",
+      "cover": "img/concre-01.webp",
+      "items": [
+        "img/concre-01.webp"
+      ]
+    },
+    {
+      "id": "anugerah",
+      "title": "Anugerah — Self Promotion",
+      "disciplines": "Branding · 3D",
+      "year": "",
+      "role": "",
+      "summary": "Self-promotional product render and static ad.",
+      "cover": "img/Anugerah_product_render.webp",
+      "items": [
+        "img/Anugerah_product_render.webp",
+        "img/Anugerah_static_ad.webp"
+      ]
+    },
+    {
+      "id": "product-design",
+      "title": "Product Design Series",
+      "disciplines": "Product · Packaging",
+      "year": "",
+      "role": "",
+      "summary": "A series of product and packaging designs.",
+      "cover": "img/design_01.webp",
+      "items": [
+        "img/design_01.webp",
+        "img/design_02.webp",
+        "img/design_03.webp",
+        "img/design_04.webp",
+        "img/design_05.webp"
+      ]
+    },
+    {
+      "id": "product-animation",
+      "title": "Product Animations",
+      "disciplines": "3D · Motion · Product",
+      "year": "",
+      "role": "",
+      "summary": "Short 3D product animations.",
+      "cover": "videos/oinko.webm",
+      "items": [
+        "videos/oinko.webm",
+        "videos/taila.webm",
+        "videos/fishcannies.webm",
+        "videos/milkies.webm",
+        "videos/vending_01.webm"
+      ]
+    },
+    {
+      "id": "3d-loops",
+      "title": "3D Loops",
+      "disciplines": "3D · Motion",
+      "year": "",
+      "role": "",
+      "summary": "Looping 3D illustrations and product renders.",
+      "cover": "img/3d_01.gif",
+      "items": [
+        "img/3d_01.gif",
+        "img/redrum.gif",
+        "img/money_01.gif",
+        "img/coffee_02.gif",
+        "img/breadshop.gif",
+        "img/martino.png"
+      ]
+    },
+    {
+      "id": "posters",
+      "title": "Posters",
+      "disciplines": "Poster",
+      "year": "",
+      "role": "",
+      "summary": "Event, editorial and experimental posters.",
+      "cover": "img/design_06.webp",
+      "items": [
+        "img/design_06.webp",
+        "img/Kids_02.webp",
+        "img/nuke.webp",
+        "img/libre_01.webp",
+        "img/times.webp",
+        "img/army3.webp",
+        "img/poster_01.webp",
+        "img/fatball.webp",
+        "img/jihadis.webp",
+        "img/auteur.webp",
+        "img/backandforth.webp",
+        "img/engcir.webp",
+        "img/circle-01.webp",
+        "img/makbot.webp",
+        "img/visioncreationnewsun.webp"
+      ]
+    },
+    {
+      "id": "logos",
+      "title": "Logos & Identities",
+      "disciplines": "Branding · Logo",
+      "year": "",
+      "role": "",
+      "summary": "Logos and identity systems.",
+      "cover": "img/fremier.webp",
+      "items": [
+        "img/fremier.webp",
+        "img/logo_02.webp",
+        "img/dandelion.webp",
+        "img/tarot_logo.webp",
+        "img/switch.webp",
+        "img/shopiya.webp"
+      ]
+    },
+    {
+      "id": "campaigns",
+      "title": "Campaigns & Social",
+      "disciplines": "Branding · Social · Product",
+      "year": "",
+      "role": "",
+      "summary": "Campaign, social and print pieces.",
+      "cover": "img/Rose_01.webp",
+      "items": [
+        "img/Rose_01.webp",
+        "img/nyawit.webp",
+        "img/mnm.webp",
+        "img/zura.webp",
+        "img/banner_kero_01.webp",
+        "img/good_01.webp",
+        "img/brochure_01_music.webp"
+      ]
+    },
+    {
+      "id": "web",
+      "title": "Web",
+      "disciplines": "Website",
+      "year": "",
+      "role": "",
+      "summary": "Website design and mockups.",
+      "cover": "img/Mockup_01.gif",
+      "items": [
+        "img/Mockup_01.gif",
+        "videos/new_web.webm",
+        "img/web_03.webp"
+      ]
+    },
+    {
+      "id": "app",
+      "title": "App",
+      "disciplines": "App",
+      "year": "",
+      "role": "",
+      "summary": "Mobile app interface design.",
+      "cover": "img/app_02.webp",
+      "items": [
+        "img/app_02.webp"
+      ]
+    }
+  ]
+}
